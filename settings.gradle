@@ -1,2 +1,9 @@
 rootProject.name = 'shopping-list-helper'
+include 'specifications'
+
+rootProject.children.each { it ->
+    def moduleName      = it.name
+    it.name             = "${rootProject.name}-${moduleName}"
+    it.buildFileName    = "${moduleName}.gradle"
+}
 

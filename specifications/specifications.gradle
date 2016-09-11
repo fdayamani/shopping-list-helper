@@ -1,0 +1,21 @@
+configurations {
+    jbehaveResources.transitive = false
+}
+
+dependencies {
+    compile libs.jbehave
+    compile libs.slf4j
+
+    testCompile libs.assertJ
+    testCompile libs.junit
+    testCompile libs.mockito
+
+    jbehaveResources libs.jbehaveResources
+}
+
+task copyJBehaveResources(type: Copy) {
+    from({zipTree(configurations.jbehaveResources.singleFile)})
+    into "$buildDir/reports/jbehave/view"
+}
+
+test.finalizedBy copyJBehaveResources

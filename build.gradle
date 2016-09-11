@@ -1,17 +1,17 @@
-group 'io.github.fdayamani'
-version '1.0-SNAPSHOT'
+defaultTasks 'clean', 'build'
 
-apply plugin: 'java'
-apply from: "$rootDir/gradle/libraries.gradle"
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }
 
-dependencies {
-    testCompile libs.assertJ
-    testCompile libs.junit
-    testCompile libs.mockito
+subprojects {
+    apply plugin: 'java'
+    apply from: "$rootDir/gradle/libraries.gradle"
+
+    ext {
+        version = '0.1-SNAPSHOT'
+        group = 'io.github.fdayamani.slh'
+    }
 }

@@ -3,12 +3,14 @@ ext {
     jbehaveVersion = '4.0.5'
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
+    slf4jVersion = '1.6.1'
 
     libs = [
         assertJ:            "org.assertj:assertj-core:$assertJVersion",
         jbehave:            "org.jbehave:jbehave-core:$jbehaveVersion",
         jbehaveResources:   "org.jbehave.site:jbehave-site-resources:3.3@zip",
         junit:              "junit:junit:$junitVersion",
-        mockito:            "org.mockito:mockito-core:$mockitoVersion"
+        mockito:            "org.mockito:mockito-core:$mockitoVersion",
+        slf4j:              "org.slf4j:slf4j-simple:$slf4jVersion"
     ]
 }
