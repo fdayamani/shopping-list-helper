@@ -1,0 +1,17 @@
+group 'io.github.fdayamani'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply from: "$rootDir/gradle/libraries.gradle"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile libs.assertJ
+    testCompile libs.junit
+    testCompile libs.mockito
+}
