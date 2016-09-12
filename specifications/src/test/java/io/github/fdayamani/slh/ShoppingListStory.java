@@ -3,7 +3,6 @@ package io.github.fdayamani.slh;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ public class ShoppingListStory {
 
     private ShoppingListHelper shoppingListHelper = new ShoppingListHelper();
     private MealPlanner mealPlanner = new MealPlanner();
-    private List<Ingredient> shoppingList;
+    private List<String> shoppingList;
 
     @Test
     public void verifyShoppingListHelperStory() throws Exception {
@@ -29,17 +28,14 @@ public class ShoppingListStory {
 
     @Given("that I want to make $meal")
     public void mealPlannerContains(String meal) {
-        List<Ingredient> chickenBurgerIngredients = Arrays.asList(
-                new Ingredient("chicken steaks"),
-                new Ingredient("Nando's marinade"),
-                new Ingredient("red chillies"),
-                new Ingredient("lime"),
-                new Ingredient("olive oil")
+        List<String> chickenSteakIngredients = Arrays.asList(
+                "chicken steaks",
+                "marinade"
                 );
         mealPlanner.add(
                 aMeal()
-                    .withIngredients(chickenBurgerIngredients)
-                    .withInstructions("marinate overnight then cook on griddle pan. Use extra mixture to baste")
+                    .withIngredients(chickenSteakIngredients)
+                    .withInstructions("marinate overnight then cook on griddle pan. Use extra marinade to baste")
                     .build());
     }
 
@@ -50,9 +46,9 @@ public class ShoppingListStory {
 
     @Then("the final list is $ingredients")
     public void assertListIsExpectedListOfIngredients(String ingredients) {
-        List<Ingredient> expectedShoppingList = new ArrayList<>();
+        List<String> expectedShoppingList = new ArrayList<>();
         for (String ingredient : ingredients.split(", ")) {
-            expectedShoppingList.add(new Ingredient(ingredient));
+            expectedShoppingList.add(ingredient);
         }
 
         assertThat(shoppingList).isEqualTo(expectedShoppingList);

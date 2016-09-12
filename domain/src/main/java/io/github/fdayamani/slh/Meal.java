@@ -3,8 +3,12 @@ package io.github.fdayamani.slh;
 import java.util.List;
 
 public class Meal {
-    public List<Ingredient> ingredients;
+    public List<String> ingredients;
     private String instructions;
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
 
     public static class Builder {
         private Meal meal = new Meal();
@@ -13,7 +17,7 @@ public class Meal {
             return new Builder();
         }
 
-        public Builder withIngredients(List<Ingredient> ingredients) {
+        public Builder withIngredients(List<String> ingredients) {
             meal.ingredients = ingredients;
             return this;
         }
