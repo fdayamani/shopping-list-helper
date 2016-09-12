@@ -1,4 +1,4 @@
-package io.github.fdayamani.slh.specifications;
+package io.github.fdayamani.slh;
 
 import org.jbehave.core.ConfigurableEmbedder;
 import org.jbehave.core.configuration.Configuration;

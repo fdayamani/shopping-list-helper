@@ -6,4 +6,4 @@ So that I can buy the right stuff from the supermarket
 Scenario: The cook can view a list of ingredients needed for one recipe
 Given that I want to make chicken burgers
 When I invoke the shopping list helper
-Then the final list is marinade, olive oil, red chillies, lime
+Then the final list is chicken steaks, Nando's marinade, olive oil, red chillies, lime

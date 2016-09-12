@@ -3,6 +3,7 @@ configurations {
 }
 
 dependencies {
+    compile project(':shopping-list-helper-domain')
     compile libs.jbehave
     compile libs.slf4j
 
