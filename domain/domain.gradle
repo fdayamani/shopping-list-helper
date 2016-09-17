@@ -2,6 +2,7 @@ group 'io.github.fdayamani.slh'
 version 'unspecified'
 
 dependencies {
+    compile project(':shopping-list-helper-application')
     testCompile libs.junit
     testCompile libs.mockito
     testCompile libs.assertJ

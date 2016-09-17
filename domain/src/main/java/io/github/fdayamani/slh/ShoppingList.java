@@ -5,9 +5,15 @@ import java.util.List;
 
 import static java.util.Collections.emptyList;
 
-public class ShoppingListHelper {
-    public static List<String> retrieveShoppingListFor(MealPlanner mealPlanner) {
-        List<String> shoppingList = new ArrayList<>();
+public class ShoppingList {
+    private MealPlanner mealPlanner;
+    private List<String> shoppingList = new ArrayList<>();
+
+    public ShoppingList(MealPlanner mealPlanner) {
+        this.mealPlanner = mealPlanner;
+    }
+
+    public List<String> retrieveShoppingList() {
         for (Meal meal : mealPlanner.getMeals()) {
             shoppingList.addAll(meal.getIngredients());
         }

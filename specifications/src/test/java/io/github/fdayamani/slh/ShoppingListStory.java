@@ -15,12 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShoppingListStory {
 
-    private ShoppingListHelper shoppingListHelper = new ShoppingListHelper();
     private MealPlanner mealPlanner = new MealPlanner();
-    private List<String> shoppingList;
+    private ShoppingList shoppingList = new ShoppingList(mealPlanner);
+    private List<String> groceryList = new ArrayList<>();
 
     @Test
-    public void verifyShoppingListHelperStory() throws Exception {
+    public void verifyShoppingListStory() throws Exception {
         aLightweightTestRunnerWithStepsFrom(this)
                 .withStory("stories/shopping_list.story")
                 .run();
@@ -41,7 +41,7 @@ public class ShoppingListStory {
 
     @When("I invoke the shopping list helper")
     public void invokeShoppingListHelper() {
-        shoppingList = shoppingListHelper.retrieveShoppingListFor(mealPlanner);
+        groceryList = shoppingList.retrieveShoppingList();
     }
 
     @Then("the final list is $ingredients")
@@ -51,6 +51,6 @@ public class ShoppingListStory {
             expectedShoppingList.add(ingredient);
         }
 
-        assertThat(shoppingList).isEqualTo(expectedShoppingList);
+        assertThat(groceryList).isEqualTo(expectedShoppingList);
     }
 }

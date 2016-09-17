@@ -1,6 +1,8 @@
 rootProject.name = 'shopping-list-helper'
 include 'specifications',
-        'domain'
+        'domain',
+        'application',
+        'infrastructure'
 
 rootProject.children.each { it ->
     def moduleName      = it.name
