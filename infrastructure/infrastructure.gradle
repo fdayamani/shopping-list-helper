@@ -7,6 +7,6 @@ repositories {
 }
 
 dependencies {
-    compile project(':shopping-list-helper-domain')
+    compile project(':shopping-list-helper-application')
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

@@ -2,14 +2,24 @@ package io.github.fdayamani.slh;
 
 import java.util.List;
 
-import static java.util.Collections.emptyList;
-
 public class ShoppingListGenerator {
-    public ShoppingListGenerator(MealPlannerCreator mealplanner, ShoppingDestination destination) {
+    private final MealPlannerCreator mealplannerCreator;
+    private final ShoppingDestination destination;
+    private final ShoppingList shoppingList;
+    private List<String> groceryList;
 
+    public ShoppingListGenerator(MealPlannerCreator mealplannerCreator, ShoppingDestination destination, ShoppingList shoppingList) {
+        this.mealplannerCreator = mealplannerCreator;
+        this.destination = destination;
+        this.shoppingList = shoppingList;
     }
 
-    public List<String> generate() {
-        return emptyList();
+    public void generate() {
+        groceryList = shoppingList.retrieveShoppingListFor(mealPlan());
+        destination.outputShoppingList(groceryList);
+    }
+
+    private MealPlanner mealPlan() {
+        return mealplannerCreator.createMealPlan();
     }
 }

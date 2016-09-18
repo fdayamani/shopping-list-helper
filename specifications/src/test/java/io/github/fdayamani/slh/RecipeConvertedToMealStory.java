@@ -1,5 +1,6 @@
 package io.github.fdayamani.slh;
 
+import io.github.fdayamani.slh.testdoubles.DestinationSpy;
 import org.apache.commons.io.FileUtils;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -18,17 +19,20 @@ import java.util.List;
 import static io.github.fdayamani.slh.LightweightTestEmbedder.aLightweightTestRunnerWithStepsFrom;
 import static java.nio.file.Files.write;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class RecipeConvertedToMealStory {
 
-    public static final String MEALPLANNER_PATH = "src/test/resources/mealplanner/";
+    public static final String MEALPLANNER_PATH = "src/test/resources/mealPlanner/";
     private String mealName;
-    private List<String> shoppingList;
+    private List<String> groceryList;
 
-    FileMealPlannerCreator mealplanner = new FileMealPlannerCreator(MEALPLANNER_PATH);
+    FileMealPlannerCreator mealPlanner = new FileMealPlannerCreator(MEALPLANNER_PATH);
     DestinationSpy destination = new DestinationSpy();
+    ShoppingList shoppingList = new ShoppingList();
 
-    ShoppingListGenerator generator = new ShoppingListGenerator(mealplanner, destination);
+    ShoppingListGenerator generator = new ShoppingListGenerator(mealPlanner, destination, shoppingList);
 
     @Test
     @Ignore
@@ -48,12 +52,16 @@ public class RecipeConvertedToMealStory {
 
     @When("the shopping list is generated")
     public void generateShoppingList() {
-        shoppingList = generator.generate();
+        generator.generate();
     }
 
     @Then("the final shopping list contains $ingredients")
     public void assertThatShoppingListContains(String ingredients) {
-        assertThat(shoppingList).isEqualTo(Arrays.asList(ingredients.split((", "))));
+        assertThat(capturedShoppingList()).isEqualTo(Arrays.asList(ingredients.split((", "))));
+    }
+
+    private List<String> capturedShoppingList() {
+        return destination.invokedWith();
     }
 
     @After

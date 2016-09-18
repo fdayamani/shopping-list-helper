@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ShoppingListStory {
 
     private MealPlanner mealPlanner = new MealPlanner();
-    private ShoppingList shoppingList = new ShoppingList(mealPlanner);
+    private ShoppingList shoppingList = new ShoppingList();
     private List<String> groceryList = new ArrayList<>();
 
     @Test
@@ -41,7 +41,7 @@ public class ShoppingListStory {
 
     @When("I invoke the shopping list helper")
     public void invokeShoppingListHelper() {
-        groceryList = shoppingList.retrieveShoppingList();
+        groceryList = shoppingList.retrieveShoppingListFor(mealPlanner);
     }
 
     @Then("the final list is $ingredients")

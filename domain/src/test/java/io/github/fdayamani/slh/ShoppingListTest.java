@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ShoppingListTest {
     private MealPlanner mealPlanner = new MealPlanner();
-    private ShoppingList shoppingList = new ShoppingList(mealPlanner);
+    private ShoppingList shoppingList = new ShoppingList();
 
     @Mock
     private Meal coriander;
@@ -25,7 +25,7 @@ public class ShoppingListTest {
 
     @Test public void
     returnsEmptyList_WhenMealPlannerIsEmpty() {
-        List<String> groceryList = shoppingList.retrieveShoppingList();
+        List<String> groceryList = shoppingList.retrieveShoppingListFor(mealPlanner);
 
         assertThat(groceryList.isEmpty()).isTrue();
     }
@@ -37,7 +37,7 @@ public class ShoppingListTest {
         when(coriander.getIngredients()).thenReturn(Arrays.asList("Coriander"));
         when(chickenSteak.getIngredients()).thenReturn(Arrays.asList("Chicken breast", "marinade"));
 
-        List<String> groceryList = shoppingList.retrieveShoppingList();
+        List<String> groceryList = shoppingList.retrieveShoppingListFor(mealPlanner);
 
         assertThat(groceryList).isEqualTo(Arrays.asList("Coriander", "Chicken breast", "marinade"));
     }
