@@ -1,5 +1,6 @@
 package io.github.fdayamani.slh;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ShoppingListGenerator {
@@ -14,12 +15,12 @@ public class ShoppingListGenerator {
         this.shoppingList = shoppingList;
     }
 
-    public void generate() {
+    public void generate() throws IOException {
         groceryList = shoppingList.retrieveShoppingListFor(mealPlan());
         destination.outputShoppingList(groceryList);
     }
 
-    private MealPlanner mealPlan() {
+    private MealPlanner mealPlan() throws IOException {
         return mealplannerCreator.createMealPlan();
     }
 }

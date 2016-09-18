@@ -6,7 +6,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.junit.After;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -19,14 +18,11 @@ import java.util.List;
 import static io.github.fdayamani.slh.LightweightTestEmbedder.aLightweightTestRunnerWithStepsFrom;
 import static java.nio.file.Files.write;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 public class RecipeConvertedToMealStory {
 
     public static final String MEALPLANNER_PATH = "src/test/resources/mealPlanner/";
     private String mealName;
-    private List<String> groceryList;
 
     FileMealPlannerCreator mealPlanner = new FileMealPlannerCreator(MEALPLANNER_PATH);
     DestinationSpy destination = new DestinationSpy();
@@ -35,7 +31,6 @@ public class RecipeConvertedToMealStory {
     ShoppingListGenerator generator = new ShoppingListGenerator(mealPlanner, destination, shoppingList);
 
     @Test
-    @Ignore
     public void verifyShoppingListHelperStory() throws Exception {
         aLightweightTestRunnerWithStepsFrom(this)
                 .withStory("stories/recipe_converted_to_meal.story")
@@ -44,14 +39,14 @@ public class RecipeConvertedToMealStory {
 
     @Given("the ingredients for $meal are $ingredients")
     public void createRecipeFileWith(String meal, String ingredients) throws IOException {
-        List<String> lines = Arrays.asList("Ingredients", ingredients);
+        List<String> lines = Arrays.asList("Ingredients: " + ingredients, "Instructions: " + " marinate chicken, cook in oven at 180 for 30 minutes");
         mealName = meal.replaceAll(" ", "_") + ".txt";
         File file = new File(MEALPLANNER_PATH + "/" +  mealName);
         write(Paths.get(file.toURI()), lines, StandardCharsets.UTF_8);
     }
 
     @When("the shopping list is generated")
-    public void generateShoppingList() {
+    public void generateShoppingList() throws IOException {
         generator.generate();
     }
 

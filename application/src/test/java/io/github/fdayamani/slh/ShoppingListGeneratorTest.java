@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,13 +26,13 @@ public class ShoppingListGeneratorTest {
 
     ArgumentCaptor<MealPlanner> captor = ArgumentCaptor.forClass(MealPlanner.class);
 
-    @Before public void setUp() {
+    @Before public void setUp() throws IOException {
         givenThatMealPlannerContainsChickenSteak();
         when(mealPlannerCreator.createMealPlan()).thenReturn(planner);
     }
 
     @Test public void
-    generatesShoppingList_WithCorrectIngredients() {
+    generatesShoppingList_WithCorrectIngredients() throws IOException {
         generator.generate();
 
         verify(shoppingList).retrieveShoppingListFor(captor.capture());
@@ -39,7 +40,7 @@ public class ShoppingListGeneratorTest {
     }
 
     @Test public void
-    invokesDestination_WithCorrectGroceryList() {
+    invokesDestination_WithCorrectGroceryList() throws IOException {
         when(shoppingList.retrieveShoppingListFor(planner)).thenReturn(INGREDIENTS);
 
         generator.generate();
