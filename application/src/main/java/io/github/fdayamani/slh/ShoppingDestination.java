@@ -1,7 +1,7 @@
 package io.github.fdayamani.slh;
 
-import java.util.List;
+import java.util.Set;
 
 public interface ShoppingDestination {
-    void outputShoppingList(List<String> groceryList);
+    void outputShoppingList(Set<String> groceryList);
 }

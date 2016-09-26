@@ -1,6 +1,9 @@
 package io.github.fdayamani.slh;
 
+import sun.nio.cs.ISO_8859_2;
+
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,7 +25,10 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
         MealPlanner planner = new MealPlanner();
         Files.walk(Paths.get(MEAL_PLANNER_PATH)).forEach(file -> {
             try {
-                addMealTo(planner, file);
+                if(file.toFile().isFile() && !file.toFile().isHidden()) {
+                    System.out.println("Processing file " + file);
+                    addMealTo(planner, file);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -45,7 +51,7 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
     }
 
     private List<String> extractIngredientsFrom(Path file) throws IOException {
-        Optional<String> ingredientLine = Files.readAllLines(file).stream()
+        Optional<String> ingredientLine = Files.readAllLines(file, Charset.forName("ISO-8859-1")).stream()
             .filter(line -> line.contains("Ingredients: "))
             .findFirst();
         String ingredients = getListFrom(ingredientLine);
@@ -53,7 +59,7 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
     }
 
     private String extractInstructionsFrom(Path file) throws IOException {
-        Optional<String> instructionLine = Files.readAllLines(file).stream()
+        Optional<String> instructionLine = Files.readAllLines(file,  Charset.forName("ISO-8859-1")).stream()
                 .filter(line -> line.contains("Instructions: "))
                 .findFirst();
         String instructions = getListFrom(instructionLine);
@@ -61,7 +67,7 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
     }
 
     private String getListFrom(Optional<String> originalLine) {
-        String line = originalLine.orElseThrow(IllegalArgumentException::new);
-        return line.substring(line.indexOf(":") + 2);
+        String line = originalLine.orElse("  ");
+        return line.contains(":") ? line.substring(line.indexOf(":") + 2) : "";
     }
 }

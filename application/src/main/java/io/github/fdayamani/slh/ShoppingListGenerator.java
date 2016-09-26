@@ -1,13 +1,13 @@
 package io.github.fdayamani.slh;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 public class ShoppingListGenerator {
     private final MealPlannerCreator mealplannerCreator;
     private final ShoppingDestination destination;
     private final ShoppingList shoppingList;
-    private List<String> groceryList;
+    private Set<String> groceryList;
 
     public ShoppingListGenerator(MealPlannerCreator mealplannerCreator, ShoppingDestination destination, ShoppingList shoppingList) {
         this.mealplannerCreator = mealplannerCreator;

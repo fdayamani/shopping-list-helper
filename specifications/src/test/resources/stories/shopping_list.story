@@ -1,5 +1,5 @@
 Narrative:
-As a cook with a meal plan
+As a cook with a meal plan with one recipe
 I want to see a list of all ingredients I'll need
 So that I can buy the right stuff from the supermarket
 

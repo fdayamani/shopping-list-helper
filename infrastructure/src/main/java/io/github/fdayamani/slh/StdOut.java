@@ -1,11 +1,11 @@
 package io.github.fdayamani.slh;
 
-import java.util.List;
+import java.util.Set;
 
 public class StdOut implements ShoppingDestination {
 
     @Override
-    public void outputShoppingList(List<String> groceryList) {
+    public void outputShoppingList(Set<String> groceryList) {
         System.out.println(groceryList.toString());
     }
 }

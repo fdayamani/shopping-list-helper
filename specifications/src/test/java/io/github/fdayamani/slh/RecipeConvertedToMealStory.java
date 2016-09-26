@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 import static io.github.fdayamani.slh.LightweightTestEmbedder.aLightweightTestRunnerWithStepsFrom;
 import static java.nio.file.Files.write;
@@ -52,10 +53,12 @@ public class RecipeConvertedToMealStory {
 
     @Then("the final shopping list contains $ingredients")
     public void assertThatShoppingListContains(String ingredients) {
-        assertThat(capturedShoppingList()).isEqualTo(Arrays.asList(ingredients.split((", "))));
+        List<String> expectedIngredients = Arrays.asList(ingredients.split(", "));
+
+        assertThat(capturedShoppingList().containsAll(expectedIngredients)).isTrue();
     }
 
-    private List<String> capturedShoppingList() {
+    private Set<String> capturedShoppingList() {
         return destination.invokedWith();
     }
 

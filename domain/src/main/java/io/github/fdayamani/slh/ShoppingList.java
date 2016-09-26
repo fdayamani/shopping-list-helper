@@ -1,17 +1,17 @@
 package io.github.fdayamani.slh;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import static java.util.Collections.emptyList;
+import static java.util.Collections.emptySet;
 
 public class ShoppingList {
-    private List<String> shoppingList = new ArrayList<>();
+    private Set<String> shoppingList = new HashSet<>();
 
-    public List<String> retrieveShoppingListFor(MealPlanner mealPlanner) {
+    public Set<String> retrieveShoppingListFor(MealPlanner mealPlanner) {
         for (Meal meal : mealPlanner.getMeals()) {
             shoppingList.addAll(meal.getIngredients());
         }
-        return shoppingList == null ? emptyList() : shoppingList;
+        return shoppingList == null ? emptySet() : shoppingList;
     }
 }
