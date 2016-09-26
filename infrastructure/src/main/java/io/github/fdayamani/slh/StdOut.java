@@ -6,6 +6,6 @@ public class StdOut implements ShoppingDestination {
 
     @Override
     public void outputShoppingList(Set<String> groceryList) {
-        System.out.println(groceryList.toString());
+        System.out.println(groceryList.toString().replaceAll(",", "\n"));
     }
 }

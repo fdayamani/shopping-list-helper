@@ -1,7 +1,5 @@
 package io.github.fdayamani.slh;
 
-import sun.nio.cs.ISO_8859_2;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -26,7 +24,6 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
         Files.walk(Paths.get(MEAL_PLANNER_PATH)).forEach(file -> {
             try {
                 if(file.toFile().isFile() && !file.toFile().isHidden()) {
-                    System.out.println("Processing file " + file);
                     addMealTo(planner, file);
                 }
             } catch (IOException e) {
@@ -44,10 +41,10 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
         List<String> ingredients = extractIngredientsFrom(file);
         String instructions = extractInstructionsFrom(file);
 
-        return aMeal().
-                withIngredients(ingredients).
-                withInstructions(instructions).
-                build();
+        return aMeal()
+                .withIngredients(ingredients)
+                .withInstructions(instructions)
+                .build();
     }
 
     private List<String> extractIngredientsFrom(Path file) throws IOException {
