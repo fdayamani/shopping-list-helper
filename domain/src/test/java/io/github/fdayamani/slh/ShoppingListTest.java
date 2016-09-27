@@ -41,6 +41,6 @@ public class ShoppingListTest {
 
         Set<String> groceryList = shoppingList.retrieveShoppingListFor(mealPlanner);
 
-        assertThat(groceryList).containsAll(Arrays.asList("Coriander", "Chicken breast", "marinade"));
+        assertThat(groceryList).containsAll(Arrays.asList("coriander", "chicken breast", "marinade"));
     }
 }
