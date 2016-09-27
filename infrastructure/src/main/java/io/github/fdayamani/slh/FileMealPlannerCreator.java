@@ -5,9 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static io.github.fdayamani.slh.Meal.Builder.aMeal;
 
@@ -38,7 +36,7 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
     }
 
     private Meal createMealFrom(Path file) throws IOException {
-        List<String> ingredients = extractIngredientsFrom(file);
+        Set<String> ingredients = extractIngredientsFrom(file);
         String instructions = extractInstructionsFrom(file);
 
         return aMeal()
@@ -47,12 +45,12 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
                 .build();
     }
 
-    private List<String> extractIngredientsFrom(Path file) throws IOException {
+    private Set<String> extractIngredientsFrom(Path file) throws IOException {
         Optional<String> ingredientLine = Files.readAllLines(file, Charset.forName("ISO-8859-1")).stream()
             .filter(line -> line.contains("Ingredients: "))
             .findFirst();
         String ingredients = getListFrom(ingredientLine);
-        return Arrays.asList(ingredients.split(", "));
+        return new HashSet<>(Arrays.asList(ingredients.split(", ")));
     }
 
     private String extractInstructionsFrom(Path file) throws IOException {

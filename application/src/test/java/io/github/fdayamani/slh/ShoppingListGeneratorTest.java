@@ -7,7 +7,9 @@ import org.mockito.ArgumentCaptor;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static io.github.fdayamani.slh.Meal.Builder.aMeal;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -16,7 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ShoppingListGeneratorTest {
-    public static final List<String> INGREDIENTS = Arrays.asList("chicken", "marinade");
+    public static final Set<String> INGREDIENTS = new HashSet<>(Arrays.asList("chicken", "marinade"));
     private MealPlannerCreator mealPlannerCreator = mock(MealPlannerCreator.class);
     private ShoppingList shoppingList = mock(ShoppingList.class);
     private DestinationSpy destination = new DestinationSpy();

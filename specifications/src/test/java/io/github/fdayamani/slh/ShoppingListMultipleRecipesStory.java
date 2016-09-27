@@ -25,22 +25,22 @@ public class ShoppingListMultipleRecipesStory {
 
         @Given("that my meal planner contains $meals")
         public void mealPlannerContains(String meals) {
-            List<String> fajitaIngredients = Arrays.asList(
+            Set<String> fajitaIngredients = new HashSet<>(Arrays.asList(
                     "chicken",
                     "fajita mix",
                     "onions",
                     "peppers",
                     "mushrooms",
                     "wraps"
-            );
-            List<String> pizzaIngredients = Arrays.asList(
+            ));
+            Set<String> pizzaIngredients = new HashSet<>(Arrays.asList(
                     "pizza bases",
                     "tomato paste",
                     "onions",
                     "peppers",
                     "mushrooms",
                     "cheese"
-            );
+            ));
             mealPlanner.add(
                     aMeal()
                             .withIngredients(fajitaIngredients)

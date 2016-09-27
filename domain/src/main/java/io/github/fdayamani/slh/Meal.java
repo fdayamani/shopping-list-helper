@@ -1,12 +1,12 @@
 package io.github.fdayamani.slh;
 
-import java.util.List;
+import java.util.Set;
 
 public class Meal {
-    public List<String> ingredients;
+    public Set<String> ingredients;
     private String instructions;
 
-    public List<String> getIngredients() {
+    public Set<String> getIngredients() {
         return ingredients;
     }
 
@@ -17,7 +17,7 @@ public class Meal {
             return new Builder();
         }
 
-        public Builder withIngredients(List<String> ingredients) {
+        public Builder withIngredients(Set<String> ingredients) {
             meal.ingredients = ingredients;
             return this;
         }

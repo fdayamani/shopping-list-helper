@@ -26,10 +26,10 @@ public class ShoppingListStory {
 
     @Given("that I want to make $meal")
     public void mealPlannerContains(String meal) {
-        List<String> chickenSteakIngredients = Arrays.asList(
+        Set<String> chickenSteakIngredients = new HashSet<>(Arrays.asList(
                 "chicken steaks",
                 "marinade"
-                );
+                ));
         mealPlanner.add(
                 aMeal()
                     .withIngredients(chickenSteakIngredients)
