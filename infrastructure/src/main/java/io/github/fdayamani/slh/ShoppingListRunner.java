@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class ShoppingListRunner {
     public static void main(String[] args) throws IOException {
-        new ShoppingListRunner().run("/Users/fatemadayamani/Desktop/mealplan");
+        new ShoppingListRunner().run(args[0]);
     }
 
     private void run(String recipeDirectory) throws IOException {

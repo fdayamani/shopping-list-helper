@@ -18,6 +18,9 @@ public class ShoppingList {
     }
 
     private List<String> ingredientsOf(Meal meal) {
-        return meal.getIngredients().stream().map(String::toLowerCase).collect(Collectors.toList());
+        return meal.getIngredients()
+                .stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
     }
 }
