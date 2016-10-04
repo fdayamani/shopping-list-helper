@@ -17,8 +17,8 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
     }
 
     @Override
-    public MealPlanner createMealPlan() throws IOException {
-        MealPlanner planner = new MealPlanner();
+    public MealPlan createMealPlan() throws IOException {
+        MealPlan planner = new MealPlan();
         Files.walk(Paths.get(MEAL_PLANNER_PATH)).forEach(file -> {
             try {
                 if(file.toFile().isFile() && !file.toFile().isHidden()) {
@@ -31,7 +31,7 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
         return planner;
     }
 
-    private void addMealTo(MealPlanner planner, Path file) throws IOException {
+    private void addMealTo(MealPlan planner, Path file) throws IOException {
         planner.add(createMealFrom(file));
     }
 

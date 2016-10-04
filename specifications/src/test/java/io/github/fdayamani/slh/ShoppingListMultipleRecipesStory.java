@@ -12,7 +12,7 @@ import static io.github.fdayamani.slh.Meal.Builder.aMeal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShoppingListMultipleRecipesStory {
-        private MealPlanner mealPlanner = new MealPlanner();
+        private MealPlan mealPlan = new MealPlan();
         private Set<String> groceryList = new HashSet<>();
 
         @Test
@@ -40,12 +40,12 @@ public class ShoppingListMultipleRecipesStory {
                     "mushrooms",
                     "cheese"
             ));
-            mealPlanner.add(
+            mealPlan.add(
                     aMeal()
                             .withIngredients(fajitaIngredients)
                             .withInstructions("it's easy, figure it out")
                             .build());
-            mealPlanner.add(
+            mealPlan.add(
                     aMeal()
                             .withIngredients(pizzaIngredients)
                             .withInstructions("it's easy, figure it out")
@@ -54,7 +54,7 @@ public class ShoppingListMultipleRecipesStory {
 
         @When("the shopping list helper is invoked")
         public void invokeShoppingListHelper() {
-            groceryList = mealPlanner.retrieveShoppingList();
+            groceryList = mealPlan.retrieveShoppingList();
         }
 
         @Then("the shopping list contains $ingredients once only")

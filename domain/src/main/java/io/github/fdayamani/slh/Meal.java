@@ -31,4 +31,20 @@ public class Meal {
             return meal;
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Meal meal = (Meal) o;
+
+        return ingredients != null ? ingredients.equals(meal.ingredients) : meal.ingredients == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return ingredients != null ? ingredients.hashCode() : 0;
+    }
 }

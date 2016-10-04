@@ -18,7 +18,7 @@ public class ShoppingListGenerator {
         destination.outputShoppingList(groceryList);
     }
 
-    private MealPlanner mealPlan() throws IOException {
+    private MealPlan mealPlan() throws IOException {
         return mealplannerCreator.createMealPlan();
     }
 }

@@ -3,12 +3,10 @@ package io.github.fdayamani.slh;
 import io.github.fdayamani.slh.testdoubles.DestinationSpy;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static io.github.fdayamani.slh.Meal.Builder.aMeal;
@@ -23,7 +21,7 @@ public class ShoppingListGeneratorTest {
     private DestinationSpy destination = new DestinationSpy();
 
     private ShoppingListGenerator generator = new ShoppingListGenerator(mealPlannerCreator, destination);
-    private MealPlanner planner = mock(MealPlanner.class);
+    private MealPlan planner = mock(MealPlan.class);
 
 
     @Before public void setUp() throws IOException {
