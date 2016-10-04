@@ -17,9 +17,8 @@ public class ShoppingListRunner {
         private ShoppingListGenerator make(String recipeDirectory) {
             FileMealPlannerCreator mealPlannerCreator = new FileMealPlannerCreator(recipeDirectory);
             StdOut destination = new StdOut();
-            ShoppingList shoppingList = new ShoppingList();
 
-            return new ShoppingListGenerator(mealPlannerCreator, destination, shoppingList);
+            return new ShoppingListGenerator(mealPlannerCreator, destination);
         }
     }
 }

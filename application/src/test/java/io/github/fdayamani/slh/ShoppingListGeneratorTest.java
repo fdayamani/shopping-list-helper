@@ -20,13 +20,11 @@ import static org.mockito.Mockito.when;
 public class ShoppingListGeneratorTest {
     public static final Set<String> INGREDIENTS = new HashSet<>(Arrays.asList("chicken", "marinade"));
     private MealPlannerCreator mealPlannerCreator = mock(MealPlannerCreator.class);
-    private ShoppingList shoppingList = mock(ShoppingList.class);
     private DestinationSpy destination = new DestinationSpy();
 
-    private ShoppingListGenerator generator = new ShoppingListGenerator(mealPlannerCreator, destination, shoppingList);
-    private MealPlanner planner = new MealPlanner();
+    private ShoppingListGenerator generator = new ShoppingListGenerator(mealPlannerCreator, destination);
+    private MealPlanner planner = mock(MealPlanner.class);
 
-    ArgumentCaptor<MealPlanner> captor = ArgumentCaptor.forClass(MealPlanner.class);
 
     @Before public void setUp() throws IOException {
         givenThatMealPlannerContainsChickenSteak();
@@ -37,13 +35,12 @@ public class ShoppingListGeneratorTest {
     generatesShoppingList_WithCorrectIngredients() throws IOException {
         generator.generate();
 
-        verify(shoppingList).retrieveShoppingListFor(captor.capture());
-        assertThat(captor.getValue()).isEqualTo(planner);
+        verify(planner).retrieveShoppingList();
     }
 
     @Test public void
     invokesDestination_WithCorrectGroceryList() throws IOException {
-        when(shoppingList.retrieveShoppingListFor(planner)).thenReturn(INGREDIENTS);
+        when(planner.retrieveShoppingList()).thenReturn(INGREDIENTS);
 
         generator.generate();
 

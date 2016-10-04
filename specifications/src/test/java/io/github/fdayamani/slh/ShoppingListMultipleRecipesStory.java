@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShoppingListMultipleRecipesStory {
         private MealPlanner mealPlanner = new MealPlanner();
-        private ShoppingList shoppingList = new ShoppingList();
         private Set<String> groceryList = new HashSet<>();
 
         @Test
@@ -55,7 +54,7 @@ public class ShoppingListMultipleRecipesStory {
 
         @When("the shopping list helper is invoked")
         public void invokeShoppingListHelper() {
-            groceryList = shoppingList.retrieveShoppingListFor(mealPlanner);
+            groceryList = mealPlanner.retrieveShoppingList();
         }
 
         @Then("the shopping list contains $ingredients once only")

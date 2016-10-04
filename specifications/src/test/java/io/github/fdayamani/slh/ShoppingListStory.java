@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ShoppingListStory {
 
     private MealPlanner mealPlanner = new MealPlanner();
-    private ShoppingList shoppingList = new ShoppingList();
     private Set<String> groceryList = new HashSet<>();
 
     @Test
@@ -39,7 +38,7 @@ public class ShoppingListStory {
 
     @When("I invoke the shopping list helper")
     public void invokeShoppingListHelper() {
-        groceryList = shoppingList.retrieveShoppingListFor(mealPlanner);
+        groceryList = mealPlanner.retrieveShoppingList();
     }
 
     @Then("the final list is $ingredients")
