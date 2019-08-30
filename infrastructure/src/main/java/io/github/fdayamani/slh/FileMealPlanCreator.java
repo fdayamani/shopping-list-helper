@@ -9,10 +9,10 @@ import java.util.*;
 
 import static io.github.fdayamani.slh.Meal.Builder.aMeal;
 
-public class FileMealPlannerCreator implements MealPlannerCreator {
+public class FileMealPlanCreator implements MealPlannerCreator {
     private final String MEAL_PLANNER_PATH;
 
-    public FileMealPlannerCreator(String mealplannerPath) {
+    public FileMealPlanCreator(String mealplannerPath) {
         MEAL_PLANNER_PATH = mealplannerPath;
     }
 
@@ -47,7 +47,8 @@ public class FileMealPlannerCreator implements MealPlannerCreator {
 
     private Set<String> extractIngredientsFrom(Path file) throws IOException {
         Optional<String> ingredientLine = Files.readAllLines(file, Charset.forName("ISO-8859-1")).stream()
-            .filter(line -> line.contains("Ingredients: "))
+            .map(String::toLowerCase)
+            .filter(line -> line.contains("ingredients: "))
             .findFirst();
         String ingredients = getListFrom(ingredientLine);
         return new HashSet<>(Arrays.asList(ingredients.split(", ")));

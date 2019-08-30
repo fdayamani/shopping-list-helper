@@ -15,7 +15,7 @@ public class ShoppingListRunner {
 
     class ShoppingListGeneratorFactory {
         private ShoppingListGenerator make(String recipeDirectory) {
-            FileMealPlannerCreator mealPlannerCreator = new FileMealPlannerCreator(recipeDirectory);
+            FileMealPlanCreator mealPlannerCreator = new FileMealPlanCreator(recipeDirectory);
             StdOut destination = new StdOut();
 
             return new ShoppingListGenerator(mealPlannerCreator, destination);
